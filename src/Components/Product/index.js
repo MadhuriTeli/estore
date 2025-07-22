@@ -1,13 +1,9 @@
+import productSlice from "../../store/slices/productSlices";
 import "./_product.scss";
+import { useSelector } from "react-redux";
 
 export default function Product() {
-    const product =[
-        {pname: "Jacket", price: 45, image: require("../../assets/images/shop/shop-1.jpg")},
-        {pname: "Shoes", price: 60, image: require("../../assets/images/shop/shop-2.jpg")},
-        {pname: "Watch", price: 120, image: require("../../assets/images/shop/shop-3.jpg")},
-        {pname: "Bag", price: 80, image: require("../../assets/images/shop/shop-4.jpg")},
-        {pname: "Sunglasses", price: 50, image: require("../../assets/images/shop/shop-5.jpg")},
-    ]
+    const product = useSelector(productSlice.getInitialState);
 
   return (
     <>

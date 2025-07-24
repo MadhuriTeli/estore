@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import './_side-nav.scss';
-import accordionSlice from '../../store/slices/accordionSlices';
+import accordionSlice from "../../Redux/Accordion/accordionSlices";
 export default function SideNav() {
 
   const accordionCategories = useSelector(accordionSlice.getInitialState);

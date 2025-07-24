@@ -1,4 +1,4 @@
-import productSlice from "../../store/slices/productSlices";
+import productSlice from "../../Redux/Product/productSlices";
 import "./_product.scss";
 import { useSelector } from "react-redux";
 

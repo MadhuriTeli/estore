@@ -1,36 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit"; 
+import { getProducts } from './productAction';
 
-const initialState = [
-  {
-    pname: "Jacket",
-    price: 45,
-    image: require("../../assets/images/shop/shop-1.jpg"),
-  },
-  {
-    pname: "Shoes",
-    price: 60,
-    image: require("../../assets/images/shop/shop-2.jpg"),
-  },
-  {
-    pname: "Watch",
-    price: 120,
-    image: require("../../assets/images/shop/shop-3.jpg"),
-  },
-  {
-    pname: "Bag",
-    price: 80,
-    image: require("../../assets/images/shop/shop-4.jpg"),
-  },
-  {
-    pname: "Sunglasses",
-    price: 50,
-    image: require("../../assets/images/shop/shop-5.jpg"),
-  },
-];
-
-const productSlice = createSlice({
-    name: 'product',
-    initialState
-})
-
-export default productSlice
+const initialState= {
+    products:[],
+    status: "idle",
+    error : ''
+}
+ const productSlice = createSlice({
+   name: "category",
+   initialState,
+   reducers: {},
+   extraReducers: (builder) => {
+     builder
+       .addCase(getProducts.pending, (state, action) => {
+         state.status = "Loading...";
+       })
+       .addCase(getProducts.fulfilled, (state, action) => {
+         state.status = "Success..";
+         state.products = action.payload;
+       })
+       .addCase(getProducts.rejected, (state, action) => {
+         state.status = "Failed...";
+         state.error = action.error.message;
+       });
+   },
+ });
+export default productSlice.reducer;

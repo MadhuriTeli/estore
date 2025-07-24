@@ -1,23 +1,36 @@
-import productSlice from "../../Redux/Product/productSlices";
+import { useEffect } from "react";
 import "./_product.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../../Redux/Product/productAction";
 
 export default function Product() {
-    const product = useSelector(productSlice.getInitialState);
+    const products = useSelector((state) => state.productReducer.products);
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+      dispatch(getProducts());
+    },[]);
 
   return (
     <>
       <div className="products-container">
-        {product.map((item, index) => (
-          <div className="mx-5 p-3 col-lg-3 col-md-6 product-card">
+        {products.map((product, index) => (
+          <div
+            className="mx-5 p-3 col-lg-3 col-md-6 product-card"
+            key={product.id}
+          >
             <div className="product-image-container">
-              <img src={item.image} alt="product" className="product-image" />
+              <img
+                src={ require('../../assets/images/shop/'+product.product_img)}
+                alt={product.product_name}
+                className="product-image"
+              />
             </div>
             <div className="product-info">
               <h5>
-                <a href="#">{item.pname}</a>
+                <a href="#">{product.product_name}</a>
               </h5>
-              <p className="product-price"> ${item.price}</p>
+              <p className="product-price"> ${product.price}</p>
               <div className="product-rating">
                 <i className="fa fa-star"></i>
                 <i className="fa fa-star"></i>

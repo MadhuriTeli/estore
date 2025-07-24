@@ -15,11 +15,14 @@ export default function CatNav() {
     <>
       <div className="cat-nav-container">
         <ul>
-          {categories.map((category, index) => (
-            <li className="list-items">
-              <a href="#">{category.category}</a>
-            </li>
-          ))}
+          {categories.map((category, index) => {
+            if (category.parent_category_id === null) {
+             return (
+               <li className="list-items" key={category.id}>
+                 <a href="#">{category.category}</a>
+               </li>
+             );}
+          })}
         </ul>
       </div>
     </>

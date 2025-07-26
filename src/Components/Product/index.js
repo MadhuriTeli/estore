@@ -21,7 +21,7 @@ export default function Product() {
           >
             <div className="product-image-container">
               <img
-                src={ require('../../assets/images/shop/'+product.product_img)}
+                src={require("../../assets/images/shop/" + product.product_img)}
                 alt={product.product_name}
                 className="product-image"
               />
@@ -37,6 +37,16 @@ export default function Product() {
                 <i className="fa fa-star"></i>
                 <i className="fa fa-star"></i>
                 <i className="fa fa-star"></i>
+              </div>
+            </div>
+            <div className="my-3">
+              <div className="cart-button">
+                <div className="cart-icon-container">
+                  <i className="fa fa-shopping-cart mx-4" />
+                </div>
+                <div className="cart-text-container mx-3">
+                  <p> Add to Cart </p>
+                </div>
               </div>
             </div>
           </div>

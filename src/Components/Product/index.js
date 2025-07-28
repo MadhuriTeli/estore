@@ -6,9 +6,8 @@ import { getProducts } from "../../Redux/Product/productAction";
 
 export default function Product() {
     const products = useSelector((state) => state.productReducer.products);
-    const cart = useSelector((state) => state.cartReducer);
     const dispatch = useDispatch();
-    
+
     useEffect(()=>{
       dispatch(getProducts());
     },[]);

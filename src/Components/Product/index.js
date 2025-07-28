@@ -1,15 +1,21 @@
 import { useEffect } from "react";
 import "./_product.scss";
 import { useDispatch, useSelector } from "react-redux";
+import {addCartItem} from '../../Redux/Cart/cartSlices';
 import { getProducts } from "../../Redux/Product/productAction";
 
 export default function Product() {
     const products = useSelector((state) => state.productReducer.products);
+    const cart = useSelector((state) => state.cartReducer);
     const dispatch = useDispatch();
-
+    
     useEffect(()=>{
       dispatch(getProducts());
     },[]);
+
+    const addToCart = (product) => {
+     dispatch(addCartItem(product));
+    };
 
   return (
     <>
@@ -40,7 +46,7 @@ export default function Product() {
               </div>
             </div>
             <div className="my-3">
-              <div className="cart-button">
+              <div className="cart-button" onClick={() => addToCart(product)}>
                 <div className="cart-icon-container">
                   <i className="fa fa-shopping-cart mx-4" />
                 </div>

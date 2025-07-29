@@ -9,7 +9,11 @@ const initialState= {
  const productSlice = createSlice({
    name: "category",
    initialState,
-   reducers: {},
+   reducers: {
+    filterProducts: (state, action) =>{
+
+    }
+   },
    extraReducers: (builder) => {
      builder
        .addCase(getProducts.pending, (state, action) => {
@@ -25,4 +29,5 @@ const initialState= {
        });
    },
  });
+ export const {filterProducts} = productSlice.actions;
 export default productSlice.reducer;

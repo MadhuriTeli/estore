@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./_side-nav.scss";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getCategories } from "../../Redux/Category/action";
 import { filterProducts } from "../../Redux/Product/productSlices";
 export default function SideNav() {
@@ -8,13 +8,21 @@ export default function SideNav() {
     (state) => state.categoryReducer.categories
   );
   const dispatch = useDispatch();
+  const fetchProductData = useSelector((state) => state.productReducer);
+  const [products, setProducts] = useState();
+
 
   useEffect(() => {
     dispatch(getCategories());
   }, []);
 
-  const filterData = (subCategory)=>{
-    dispatch(filterProducts(subCategory))
+  useEffect(() => {
+    setProducts(fetchProductData.products);
+  }, [fetchProductData.status]);
+
+  const filterData = (selectedCategory)=>{
+    const payload = { selectedCategory, products };
+    dispatch(filterProducts(payload));
   }
   return (
     <div className="side-nav">

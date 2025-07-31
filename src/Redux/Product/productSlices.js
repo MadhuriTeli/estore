@@ -11,7 +11,11 @@ const initialState= {
    initialState,
    reducers: {
     filterProducts: (state, action) =>{
-
+       const filterData = action.payload.products.filter(
+         (ele) => 
+           ele.category_id === action.payload.selectedCategory.id
+         )
+       state.products = filterData;
     }
    },
    extraReducers: (builder) => {

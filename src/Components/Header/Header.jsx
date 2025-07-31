@@ -2,7 +2,6 @@ import "./_header.scss";
 import { useSelector } from "react-redux";
 export default function Header(){
   const cartItemCount = useSelector((state) => state.cartReducer.totalItems);
-  console.log(cartItemCount);
     return (
       <>
         <div className="header bg-dark">

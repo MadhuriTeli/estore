@@ -16,7 +16,15 @@ const initialState= {
            ele.category_id === action.payload.selectedCategory.id
          )
        state.products = filterData;
-    }
+     },
+     
+     filterByPrice: (state, action) => {
+       const filterData = action.payload.products.filter((ele) =>
+        ele.price >= action.payload.minPriceLimit && ele.price <= action.payload.maxPriceLimit
+       )
+       state.products = filterData;
+     }
+
    },
    extraReducers: (builder) => {
      builder
@@ -33,5 +41,5 @@ const initialState= {
        });
    },
  });
- export const {filterProducts} = productSlice.actions;
+ export const {filterProducts, filterByPrice} = productSlice.actions;
 export default productSlice.reducer;

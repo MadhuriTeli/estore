@@ -3,6 +3,7 @@ import "./_product.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {addCartItem} from '../../Redux/Cart/cartSlices';
 import { getProducts } from "../../Redux/Product/productAction";
+import { Link } from "react-router-dom";
 
 export default function Product() {
     const products = useSelector((state) => state.productReducer.products);
@@ -33,7 +34,7 @@ export default function Product() {
             </div>
             <div className="product-info">
               <h5>
-                <a href="#">{product.product_name}</a>
+                <Link to='/productDetails'> {product.product_name} </Link>
               </h5>
               <p className="product-price"> ${product.price}</p>
               <div className="product-rating">
